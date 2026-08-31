@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sibabrata Biswal — AI × Bio Research Engineer</title>
+  <meta name="description" content="Sibabrata Biswal — AI × Bio research engineer working across clinical imaging, molecular graph networks, multi-omics, and production software. Currently building AI-automation systems for real businesses alongside biomedical research.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sibabrata Biswal — AI × Bio Research Engineer">
+  <meta property="og:description" content="Clinical imaging, molecular graph networks, multi-omics, and production software — plus an independent ERP & AI-automation practice.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23eeeae1'/%3E%3Cpath d='M16,3 L12.75,9.5 L19.25,9.5 Z M9.5,16 L12.75,9.5 L16,16 Z M22.5,16 L19.25,9.5 L16,16 Z M3,29 L9.5,16 L16,29 Z M29,29 L22.5,16 L16,29 Z' fill='%235b3a8e'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="relative min-h-screen selection:text-white">
+
+  <canvas id="automata-canvas" aria-hidden="true"></canvas>
+
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-md border-b border-hairline bg-bg/85">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+
+        <a href="#" class="flex items-center gap-2.5 group">
+          <svg viewBox="0 0 32 32" class="sierpinski" width="24" height="24" aria-hidden="true">
+            <path d="M16,3 L12.75,9.5 L19.25,9.5 Z"></path>
+            <path d="M9.5,16 L12.75,9.5 L16,16 Z"></path>
+            <path d="M22.5,16 L19.25,9.5 L16,16 Z"></path>
+            <path d="M3,29 L9.5,16 L16,29 Z"></path>
+            <path d="M29,29 L22.5,16 L16,29 Z"></path>
+          </svg>
+          <span class="font-mono text-sm tracking-wide font-medium text-fg">
+            Biswal<span class="text-violet">.</span>
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-7 text-sm text-fg-soft">
+          <a href="#building" class="link-underline hover:text-fg transition-colors">Currently Building</a>
+          <a href="#projects" class="link-underline hover:text-fg transition-colors">Research</a>
+          <a href="#skills" class="link-underline hover:text-fg transition-colors">Skills</a>
+          <a href="#experience" class="link-underline hover:text-fg transition-colors">Experience</a>
+          <a href="#contact" class="link-underline hover:text-fg transition-colors">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="theme-toggle-btn" aria-label="Toggle day / night theme"
+                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-xs font-mono border border-hairline text-fg-soft hover:border-violet transition-all">
+            <i id="theme-icon-sun" data-lucide="sun" class="w-3.5 h-3.5"></i>
+            <i id="theme-icon-moon" data-lucide="moon" class="w-3.5 h-3.5 hidden"></i>
+            <span id="theme-label" class="hidden sm:inline">Day</span>
+          </button>
+
+          <a href="Sibabrata_CV.pdf" target="_blank" rel="noopener noreferrer"
+             class="btn-primary hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Résumé</span>
+          </a>
+
+          <button id="mobile-nav-btn" aria-label="Open menu" aria-expanded="false"
+                  class="md:hidden flex items-center justify-center w-9 h-9 rounded-[3px] border border-hairline text-fg">
+            <i id="mobile-nav-icon-open" data-lucide="menu" class="w-4.5 h-4.5"></i>
+            <i id="mobile-nav-icon-close" data-lucide="x" class="w-4.5 h-4.5 hidden"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile nav sheet -->
+      <div id="mobile-nav" class="md:hidden border-b border-hairline bg-bg">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-col text-sm divide-hairline">
+          <a href="#building" class="py-3 text-fg-soft">Currently Building</a>
+          <a href="#projects" class="py-3 text-fg-soft">Research</a>
+          <a href="#skills" class="py-3 text-fg-soft">Skills</a>
+          <a href="#experience" class="py-3 text-fg-soft">Experience</a>
+          <a href="#contact" class="py-3 text-fg-soft">Contact</a>
+          <a href="Sibabrata_CV.pdf" target="_blank" class="py-3 text-violet font-medium">Download résumé →</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 w-full py-14 sm:py-20 space-y-12 sm:space-y-16">
+
+      <!-- Hero -->
+      <section class="space-y-7">
+        <div class="specimen-tag inline-flex items-center gap-2 px-3 py-1.5 text-xs font-mono text-fg-soft">
+          <span class="pulse-dot"></span>
+          <span>OPEN TO HEALTHCARE AI & APPLIED AI ROLES</span>
+        </div>
+
+        <div class="space-y-4 max-w-3xl">
+          <div class="text-sm font-mono text-fg-soft tracking-wider uppercase">Sibabrata Biswal</div>
+
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl leading-[1.05] text-fg">
+            I build the models that decide which <span class="italic text-violet">diagnosis</span> and which <span class="italic text-violet">drug candidate</span> get a second look.
+          </h1>
+
+          <p class="text-base sm:text-lg text-fg-soft max-w-2xl leading-relaxed">
+            AI research engineer working across clinical imaging, molecular graph networks, and multi-omics —
+            and, outside the lab, an independent builder running a live ERP system and freelance AI-automation
+            work for real businesses.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a href="#projects" class="btn-primary px-5 py-2.5 text-sm font-semibold flex items-center gap-2">
+            <span>See the work</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="#contact" class="btn-outline px-4 py-2.5 text-sm font-medium flex items-center gap-2">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Get in touch</span>
+          </a>
+        </div>
+
+        <p class="text-xs font-mono text-fg-soft flex items-center gap-2 pt-1">
+          <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5"></i>
+          <span>The background is a live reaction-diffusion simulation — the rule set behind biological pigment patterns. Click or drag to seed it.</span>
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+          <div class="record-card p-3">
+            <div class="text-xs font-mono text-fg-soft">Education</div>
+            <div class="font-medium text-sm text-fg">NISER Bhubaneswar</div>
+            <div class="text-xs text-violet font-mono">M.Sc. Life Sciences</div>
+          </div>
+          <div class="record-card p-3">
+            <div class="text-xs font-mono text-fg-soft">Fellowship</div>
+            <div class="font-medium text-sm text-fg">DISHA Scholar</div>
+            <div class="text-xs text-violet font-mono">DAE, Govt. of India</div>
+          </div>
+          <div class="record-card p-3">
+            <div class="text-xs font-mono text-fg-soft">AI Fellowship</div>
+            <div class="font-medium text-sm text-fg">CHANAKYA Fellow</div>
+            <div class="text-xs text-violet font-mono">IIT Bombay TiH-IoT</div>
+          </div>
+          <div class="record-card p-3">
+            <div class="text-xs font-mono text-fg-soft">AI Engineering</div>
+            <div class="font-medium text-sm text-fg">100x Engineers</div>
+            <div class="text-xs text-violet font-mono">GenAI Cohort, 2026</div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Currently Building -->
+      <section id="building" class="space-y-6 scroll-mt-24">
+        <div>
+          <div class="eyebrow flex items-center gap-1.5"><i data-lucide="hammer" class="w-3.5 h-3.5"></i><span>Outside the Lab</span></div>
+          <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Currently building</h2>
+        </div>
+
+        <div class="record-card p-6 sm:p-8" style="border-color: var(--violet)">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <span class="chip" style="border-color: var(--violet); color: var(--violet)">● ACTIVE</span>
+              <h3 class="font-display text-xl sm:text-2xl text-fg mt-3">Independent ERP &amp; AI-Automation Practice</h3>
+            </div>
+          </div>
+          <p class="text-sm sm:text-base text-fg-soft leading-relaxed mt-3 max-w-3xl">
+            I design and maintain an ERP system that runs a quarry business's day-to-day operations — inventory,
+            dispatch, and billing moved off a fully manual process. Alongside that, I take on freelance work
+            wiring LLMs and APIs into other small businesses' existing workflows. Solo, end to end: requirements,
+            architecture, build, deployment, support.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-4">
+            <span class="chip">LLM APIs</span>
+            <span class="chip">Workflow Automation</span>
+            <span class="chip">SQL</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Systems Design</span>
+          </div>
+          <button onclick="openProjectModal('builder-practice')" class="mt-5 text-xs font-mono text-violet flex items-center gap-1">
+            <span>Full case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- Projects -->
+      <section id="projects" class="space-y-8 scroll-mt-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-hairline pb-4">
+          <div>
+            <div class="eyebrow flex items-center gap-1.5"><i data-lucide="microscope" class="w-3.5 h-3.5"></i><span>Track Record</span></div>
+            <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Research &amp; systems</h2>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <button data-filter="all" class="btn-primary px-3 py-1.5">All</button>
+            <button data-filter="Applied Systems" class="btn-outline px-3 py-1.5">Applied Systems</button>
+            <button data-filter="Bio &amp; Molecular AI" class="btn-outline px-3 py-1.5">Bio &amp; Molecular AI</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <article data-category="Applied Systems" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Applied Systems</span>
+                <span class="text-xs font-mono text-fg-soft">JNU &amp; C-CAMP</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">PreprintCommons — Preprint Discovery Platform</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Built an LLM pipeline that turns unstructured bioRxiv/medRxiv preprints into structured, searchable
+                metadata, then shipped a full-stack discovery app on top of it.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Open-Source LLMs</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Supervisor: Prof. B. R. Panda</span>
+              <button onclick="openProjectModal('preprint-commons')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Applied Systems" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Applied Systems</span>
+                <span class="text-xs font-mono text-fg-soft">Hotel Sea Side Breeze</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">Hotel Sea Side Breeze — AI Operations Ledger</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Built an internal AI-assisted ledger and night-audit reconciliation system for hotel operations — automating
+                room booking reconciliation, expense slip parsing, and daily revenue audits.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">AI Ledger</span><span class="chip">LLM APIs</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Reconciliation</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Production Ops Tool</span>
+              <button onclick="openProjectModal('hotel-seaside-ledger')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Applied Systems" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Applied Systems</span>
+                <span class="text-xs font-mono text-fg-soft">D2C E-Commerce Ops</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">Print-on-Demand E-Commerce Operations</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Engineered and operated a full-stack print-on-demand e-commerce store with automated order routing, supplier API integrations, automated mockups, and real-time payment webhooks.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">E-Commerce</span><span class="chip">REST APIs &amp; Webhooks</span><span class="chip">Stripe</span><span class="chip">Workflow Automation</span><span class="chip">Inventory Sync</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Live Storefront &amp; Pipeline</span>
+              <button onclick="openProjectModal('pod-ecommerce')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Bio &amp; Molecular AI" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Bio &amp; Molecular AI</span>
+                <span class="text-xs font-mono text-fg-soft">JNU &amp; C-CAMP</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">Metastasis Prediction in Tongue Cancer</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Fine-tuned CNNs on head-and-neck radiology data for early metastasis localization, with Grad-CAM
+                attention maps so predictions are legible to oncologists, not just accurate.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">PyTorch</span><span class="chip">Grad-CAM</span><span class="chip">Medical Imaging</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Supervisor: Prof. B. R. Panda</span>
+              <button onclick="openProjectModal('cancer-metastasis')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Bio &amp; Molecular AI" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Bio &amp; Molecular AI</span>
+                <span class="text-xs font-mono text-fg-soft">NISER Thesis</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">GNN Modeling for Drug-Kinase Bioactivity</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Graph neural network fusing RDKit molecular topology with ProtBert protein embeddings for
+                compound-target binding. <strong class="text-fg">MAE 1.02, RMSE 1.28</strong> on benchmark sets.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">PyTorch</span><span class="chip">DGL</span><span class="chip">ProtBert</span><span class="chip">RDKit</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Supervisor: Dr. V. B. Konkimalla</span>
+              <button onclick="openProjectModal('drug-kinase-gnn')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Bio &amp; Molecular AI" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Bio &amp; Molecular AI</span>
+                <span class="text-xs font-mono text-fg-soft">NISER</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">BRAF-Targeting Phytochemical Discovery</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Chemprop deep learning model screening 2,846 phytochemicals from PubChem for BRAF-inhibition
+                activity. <strong class="text-fg">0.967 AUC</strong> on held-out compounds.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">Chemprop</span><span class="chip">RDKit</span><span class="chip">PubChem</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Supervisor: Dr. V. B. Konkimalla</span>
+              <button onclick="openProjectModal('braf-phytochemicals')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Bio &amp; Molecular AI" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Bio &amp; Molecular AI</span>
+                <span class="text-xs font-mono text-fg-soft">NISER</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">miRNA–mRNA Biomarkers in ALK+ Lung Cancer</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                Multi-omics network pipeline (limma / WGCNA / STRING) identifying 15 candidate biomarkers, reaching
+                <strong class="text-fg"> 0.82 AUC</strong> in ROC validation.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">R / Bioconductor</span><span class="chip">WGCNA</span><span class="chip">Cytoscape</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Supervisor: Dr. V. B. Konkimalla</span>
+              <button onclick="openProjectModal('mirna-biomarkers')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+          <article data-category="Bio &amp; Molecular AI" class="record-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="chip">Bio &amp; Molecular AI</span>
+                <span class="text-xs font-mono text-fg-soft">IIT Bombay TiH-IoT</span>
+              </div>
+              <h3 class="text-lg font-display text-fg">Predictive Irrigation, IoT + ML</h3>
+              <p class="text-sm text-fg-soft leading-relaxed">
+                IoT monitoring rig plus ML models turning live soil and environmental sensor data into irrigation
+                timing predictions, tested on A. thaliana under controlled conditions.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="chip">IoT Sensors</span><span class="chip">Scikit-learn</span><span class="chip">Time-Series ML</span>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs font-mono text-fg-soft">Advisor: Dr. Subhankar Mishra</span>
+              <button onclick="openProjectModal('iot-irrigation')" class="text-xs font-mono text-violet flex items-center gap-1">
+                <span>Case study</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+
+      <!-- Publications -->
+      <section id="publications" class="space-y-6 scroll-mt-24">
+        <div class="border-b border-hairline pb-4">
+          <div class="eyebrow flex items-center gap-1.5"><i data-lucide="book-marked" class="w-3.5 h-3.5"></i><span>On the Record</span></div>
+          <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Publications &amp; conferences</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="record-card p-5 space-y-2">
+            <span class="chip">Book Chapter</span>
+            <h3 class="font-display text-base text-fg pt-1">Predictive Irrigation: Current Practice and Future Prospects</h3>
+            <p class="text-xs text-fg-soft">S. Mishra, S. Biswal, A. Biswas, A. Chakraborty, S. Mishra · Nov 2024</p>
+            <a href="https://doi.org/10.1016/B978-0-443-24139-0.00022-9" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-violet link-underline">doi.org/10.1016/B978-0-443-24139-0.00022-9</a>
+          </div>
+          <div class="record-card p-5 space-y-2">
+            <span class="chip">Conference Proceeding</span>
+            <h3 class="font-display text-base text-fg pt-1">IoT4Irrigation — Integrating IoT and ML for Low-Cost Sustainable Agriculture</h3>
+            <p class="text-xs text-fg-soft">S. Biswal, et al. · Dec 2024</p>
+            <a href="https://doi.org/10.1007/978-3-031-74701-4" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-violet link-underline">doi.org/10.1007/978-3-031-74701-4</a>
+          </div>
+        </div>
+
+        <div class="record-card p-5">
+          <h3 class="font-mono text-xs uppercase tracking-wider text-fg-soft mb-3">Conferences Attended</h3>
+          <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg-soft">
+            <span>ICICBDA — Mumbai, Jun 2024</span>
+            <span>National Conf. for Undergrad. Research in Biosciences — Tirupati, Dec 2024</span>
+            <span>EAGxIndia — Bangalore, Oct 2024</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Skills -->
+      <section id="skills" class="space-y-8 scroll-mt-24">
+        <div class="border-b border-hairline pb-4">
+          <div class="eyebrow flex items-center gap-1.5"><i data-lucide="flask-conical" class="w-3.5 h-3.5"></i><span>Instruments</span></div>
+          <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Technical range</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="record-card p-6 space-y-3">
+            <div class="flex items-center gap-2 text-fg font-display text-lg"><i data-lucide="brain-circuit" class="w-5 h-5 text-violet"></i><h3>AI &amp; Machine Learning</h3></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="chip">PyTorch</span><span class="chip">DGL / GNNs</span><span class="chip">LLMs &amp; RAG</span>
+              <span class="chip">AI Agents</span><span class="chip">MCP</span><span class="chip">Grad-CAM / Attention</span>
+              <span class="chip">Scikit-learn</span><span class="chip">Chemprop</span>
+            </div>
+          </div>
+          <div class="record-card p-6 space-y-3">
+            <div class="flex items-center gap-2 text-fg font-display text-lg"><i data-lucide="dna" class="w-5 h-5 text-violet"></i><h3>Computational Biology</h3></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="chip">RDKit</span><span class="chip">ProtBert</span><span class="chip">PyMOL</span>
+              <span class="chip">GROMACS</span><span class="chip">AutoDock / Vina</span><span class="chip">RNA-Seq / WGBS</span>
+              <span class="chip">WGCNA</span><span class="chip">Cytoscape</span><span class="chip">Bioconductor (R)</span>
+            </div>
+          </div>
+          <div class="record-card p-6 space-y-3">
+            <div class="flex items-center gap-2 text-fg font-display text-lg"><i data-lucide="code-2" class="w-5 h-5 text-violet"></i><h3>Languages &amp; Systems</h3></div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">R</span><span class="chip">SQL</span>
+              <span class="chip">C</span><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span>
+              <span class="chip">TailwindCSS</span><span class="chip">Git / Linux</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Experience -->
+      <section id="experience" class="space-y-8 scroll-mt-24">
+        <div class="border-b border-hairline pb-4">
+          <div class="eyebrow flex items-center gap-1.5"><i data-lucide="history" class="w-3.5 h-3.5"></i><span>Chronology</span></div>
+          <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Experience</h2>
+        </div>
+
+        <div class="relative rail ml-4 space-y-8 pl-6">
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Independent Builder — ERP &amp; AI Automation</h3>
+              <span class="text-xs font-mono text-fg-soft ml-auto">Ongoing</span>
+            </div>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Own and maintain a production ERP for a quarry business; take on freelance AI-automation builds
+              for SMEs wiring LLMs and APIs into live workflows.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Research Associate</h3>
+              <span class="text-xs font-mono text-fg-soft">@ Jawaharlal Nehru University</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">Feb 2025 – Aug 2025</span>
+            </div>
+            <p class="text-xs text-fg-soft">New Delhi, IN · Advisor: Prof. B. R. Panda</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Fine-tuned deep learning models for tongue-cancer metastasis prediction with Grad-CAM visualization;
+              architected the full-stack PreprintCommons discovery platform.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Research Assistant</h3>
+              <span class="text-xs font-mono text-fg-soft">@ C-CAMP (Deepgene)</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">Sept 2024 – Feb 2025</span>
+            </div>
+            <p class="text-xs text-fg-soft">Bangalore, IN</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Continued PreprintCommons and cancer-diagnosis project work under Prof. B. R. Panda.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Applied GenAI &amp; AI Engineering Fellow</h3>
+              <span class="text-xs font-mono text-fg-soft">@ 100x Engineers</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">Completed May 2026</span>
+            </div>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Multi-agent orchestration, RAG architectures, MCP, and production AI deployment stacks.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Academic Manager</h3>
+              <span class="text-xs font-mono text-fg-soft">@ Jigyasu, DASCO Education</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">May 2024 – Sept 2024</span>
+            </div>
+            <p class="text-xs text-fg-soft">Bhubaneswar, IN</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Session and academic operations management, product/content development, and client technical demos.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Project Fellow</h3>
+              <span class="text-xs font-mono text-fg-soft">@ TiH-IoT Foundation, IIT Bombay</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">May 2023 – Jan 2024</span>
+            </div>
+            <p class="text-xs text-fg-soft">Mumbai, IN · Advisor: Dr. Subhankar Mishra</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              IoT-enabled plant monitoring and ML pipeline for predictive irrigation scheduling.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Research Intern</h3>
+              <span class="text-xs font-mono text-fg-soft">@ ICMR-Regional Medical Research Centre</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">Jul 2022</span>
+            </div>
+            <p class="text-xs text-fg-soft">Bhubaneswar, IN · Advisor: Dr. Susheel Kumar Singh</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Molecular cloning and E. coli expression for AP205 VLP vaccine candidate development; protein
+              purification and characterization via SDS-PAGE and Western blotting.
+            </p>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -left-[31px] top-1.5 rail-dot"></div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-medium text-fg text-base">Integrated M.Sc. in Life Sciences</h3>
+              <span class="text-xs font-mono text-fg-soft">@ NISER Bhubaneswar</span>
+              <span class="text-xs font-mono text-fg-soft ml-auto">2019 – 2024</span>
+            </div>
+            <p class="text-xs text-fg-soft">CGPA 7.55/10.0 · DAE DISHA Scholar</p>
+            <p class="text-sm text-fg-soft leading-relaxed pt-1">
+              Master's thesis in computational drug repurposing with graph neural networks; coursework spanning
+              bioinformatics, molecular biology, machine learning, and systems physiology.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Achievements -->
+      <section id="achievements" class="space-y-6 scroll-mt-24">
+        <div class="border-b border-hairline pb-4">
+          <div class="eyebrow flex items-center gap-1.5"><i data-lucide="award" class="w-3.5 h-3.5"></i><span>Recognition</span></div>
+          <h2 class="font-display text-2xl sm:text-3xl text-fg mt-1">Achievements &amp; certifications</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">DISHA Scholar</div>
+            <div class="text-[11px] font-mono text-fg-soft">2019–2024</div>
+          </div>
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">CHANAKYA Fellow</div>
+            <div class="text-[11px] font-mono text-fg-soft">2023–2024</div>
+          </div>
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">GATE Life Sciences</div>
+            <div class="text-[11px] font-mono text-fg-soft">Qualified · 2025</div>
+          </div>
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">NEST Qualifier</div>
+            <div class="text-[11px] font-mono text-fg-soft">2019</div>
+          </div>
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">Biosecurity Fundamentals</div>
+            <div class="text-[11px] font-mono text-fg-soft">BlueDot Impact, 2023</div>
+          </div>
+          <div class="record-card p-3 text-center">
+            <div class="text-xs font-medium text-fg">CS50x</div>
+            <div class="text-[11px] font-mono text-fg-soft">Harvard / edX, 2023</div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Contact -->
+      <section id="contact" class="space-y-8 scroll-mt-24">
+        <div class="record-card rounded-none p-8 sm:p-12 text-center space-y-6 relative" style="border-color: var(--violet)">
+          <div class="specimen-tag inline-flex items-center gap-2 px-3 py-1 text-xs font-mono text-fg-soft">
+            <span class="pulse-dot"></span>
+            <span>LET'S CONNECT</span>
+          </div>
+
+          <h2 class="font-display text-2xl sm:text-4xl text-fg max-w-2xl mx-auto">
+            Let's build the systems that get biomedical work out of the notebook and into production.
+          </h2>
+
+          <p class="text-sm sm:text-base text-fg-soft max-w-xl mx-auto leading-relaxed">
+            Open to full-time Healthcare AI Research Engineer and Applied AI roles. Reach out directly, or grab
+            my résumé below.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <button onclick="copyEmail('biswal.sibabrata@gmail.com')" class="btn-outline px-5 py-3 text-sm font-mono flex items-center gap-2">
+              <i data-lucide="copy" class="w-4 h-4 text-violet"></i>
+              <span>biswal.sibabrata@gmail.com</span>
+            </button>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-outline px-5 py-3 text-sm font-mono flex items-center gap-2">
+              <i data-lucide="linkedin" class="w-4 h-4 text-violet"></i><span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/gallant-sage" target="_blank" rel="noopener noreferrer" class="btn-outline px-5 py-3 text-sm font-mono flex items-center gap-2">
+              <i data-lucide="github" class="w-4 h-4 text-violet"></i><span>GitHub</span>
+            </a>
+            <a href="Sibabrata_CV.pdf" target="_blank" class="btn-primary px-6 py-3 text-sm font-semibold flex items-center gap-2">
+              <i data-lucide="download" class="w-4 h-4"></i><span>Download Résumé</span>
+            </a>
+          </div>
+
+          <div class="pt-4 text-xs font-mono text-fg-soft">
+            Brahmapur, Odisha, India · +91-9437447733
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="border-t border-hairline py-6 text-center text-xs font-mono text-fg-soft">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div>© 2026 Sibabrata Biswal</div>
+        <a href="#" class="text-violet">Top ↑</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
+    <div class="bg-raised max-w-2xl w-full rounded-[4px] p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto border relative" style="border-color: var(--violet)">
+      <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-fg-soft hover:text-fg p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div>
+        <span id="modal-category" class="chip" style="border-color: var(--violet); color: var(--violet)"></span>
+        <h3 id="modal-title" class="font-display text-xl sm:text-2xl text-fg mt-2"></h3>
+        <p id="modal-institution" class="text-xs font-mono text-fg-soft mt-1"></p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="eyebrow">The Problem</h4>
+        <p id="modal-problem" class="text-sm text-fg-soft leading-relaxed"></p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="eyebrow">The Approach</h4>
+        <p id="modal-solution" class="text-sm text-fg-soft leading-relaxed"></p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="eyebrow">Highlights</h4>
+        <ul id="modal-highlights" class="space-y-1.5"></ul>
+      </div>
+
+      <div class="space-y-2 pt-2 border-t border-hairline">
+        <h4 class="eyebrow">Stack</h4>
+        <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 px-4 py-2.5 rounded-[3px] toast font-mono text-xs font-semibold shadow-xl transform transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center gap-2">
+    <i data-lucide="check" class="w-4 h-4"></i>
+    <span>Email copied to clipboard!</span>
+  </div>
+
+  <script src="automata.js"></script>
+  <script src="app.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

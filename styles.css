@@ -1,0 +1,236 @@
+/* =========================================================
+   Design tokens — "Specimen Record" system
+   A lab-notebook / journal aesthetic for an AI × Bio builder.
+   Palette drawn from wet-lab materials: parchment lab paper,
+   gentian-violet stain, agar-gold, and a deep darkroom night.
+   ========================================================= */
+
+:root {
+  --paper: #eeeae1;
+  --paper-raised: #f6f3ec;
+  --ink: #1b1620;
+  --ink-soft: #4a4250;
+  --line-light: rgba(27, 22, 32, 0.14);
+  --line-light-soft: rgba(27, 22, 32, 0.08);
+
+  --night: #14111a;
+  --night-raised: #1c1824;
+  --night-ink: #ede7e0;
+  --night-ink-soft: #b6aec2;
+  --line-dark: rgba(237, 231, 224, 0.14);
+  --line-dark-soft: rgba(237, 231, 224, 0.08);
+
+  --violet: #5b3a8e;
+  --violet-strong: #4a2f75;
+  --violet-tint: rgba(91, 58, 142, 0.1);
+  --gold: #b3852a;
+  --gold-tint: rgba(179, 133, 42, 0.14);
+
+  --bg: var(--paper);
+  --bg-raised: var(--paper-raised);
+  --fg: var(--ink);
+  --fg-soft: var(--ink-soft);
+  --line: var(--line-light);
+  --line-soft: var(--line-light-soft);
+
+  --font-display: "Newsreader", "Iowan Old Style", serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html.dark {
+  --bg: var(--night);
+  --bg-raised: var(--night-raised);
+  --fg: var(--night-ink);
+  --fg-soft: var(--night-ink-soft);
+  --line: var(--line-dark);
+  --line-soft: var(--line-dark-soft);
+  --gold: #d1a13f;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ---------- Canvas background ---------- */
+#automata-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: auto;
+}
+html.dark #automata-canvas { opacity: 0.45; }
+
+/* ---------- Typography ---------- */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+html.dark .eyebrow { color: var(--gold); }
+
+/* ---------- Surfaces ---------- */
+.record-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.record-card:hover {
+  border-color: var(--violet);
+  box-shadow: 4px 4px 0 0 var(--violet-tint);
+}
+html.dark .record-card:hover {
+  box-shadow: 4px 4px 0 0 rgba(209, 161, 63, 0.12);
+  border-color: var(--gold);
+}
+
+.specimen-tag {
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  border-radius: 2px;
+}
+
+/* label / tag chip for tech stack, categories */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 2px;
+  border: 1px solid var(--line);
+  color: var(--fg-soft);
+  white-space: nowrap;
+}
+
+.link-underline {
+  background-image: linear-gradient(var(--violet), var(--violet));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s ease;
+}
+.link-underline:hover { background-size: 100% 1.5px; }
+html.dark .link-underline { background-image: linear-gradient(var(--gold), var(--gold)); }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: var(--violet);
+  color: #f6f3ec;
+  border-radius: 3px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.btn-primary:hover { background: var(--violet-strong); transform: translateY(-1px); }
+html.dark .btn-primary { background: var(--gold); color: var(--night); }
+html.dark .btn-primary:hover { background: #e0b455; }
+
+.btn-outline {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--fg);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.btn-outline:hover { border-color: var(--violet); transform: translateY(-1px); }
+html.dark .btn-outline:hover { border-color: var(--gold); }
+
+/* ---------- Fractal monogram (Sierpinski) ---------- */
+.sierpinski { display: inline-block; }
+.sierpinski path { fill: var(--violet); }
+html.dark .sierpinski path { fill: var(--gold); }
+
+
+/* ---------- Focus states ---------- */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+html.dark a:focus-visible, html.dark button:focus-visible { outline-color: var(--gold); }
+
+/* ---------- Scrollbar hint ---------- */
+::selection { background: var(--violet); color: #f6f3ec; }
+html.dark ::selection { background: var(--gold); color: var(--night); }
+
+/* ---------- Timeline rail ---------- */
+.rail { border-left: 1px solid var(--line); }
+.rail-dot {
+  width: 9px; height: 9px; border-radius: 999px;
+  background: var(--violet);
+  box-shadow: 0 0 0 4px var(--bg);
+}
+html.dark .rail-dot { background: var(--gold); }
+
+/* ---------- Modal ---------- */
+.modal-backdrop { background: rgba(20, 17, 26, 0.66); backdrop-filter: blur(6px); }
+
+/* ---------- Toast ---------- */
+.toast {
+  background: var(--violet);
+  color: #f6f3ec;
+}
+html.dark .toast { background: var(--gold); color: var(--night); }
+
+/* ---------- Mobile nav sheet ---------- */
+#mobile-nav {
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+#mobile-nav.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- fade in on filter ---------- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: translateY(0);} }
+.animate-fadeIn { animation: fadeIn 0.35s ease both; }
+
+/* ---------- pulse for status dot ---------- */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse-dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--violet);
+  display: inline-block;
+  animation: softPulse 2.4s ease-in-out infinite;
+}
+html.dark .pulse-dot { background: var(--gold); }
+
+/* ---------- utility ---------- */
+.text-fg-soft { color: var(--fg-soft); }
+.text-fg { color: var(--fg); }
+.text-violet { color: var(--violet); }
+html.dark .text-violet { color: var(--gold); }
+.text-gold { color: var(--gold); }
+.border-hairline { border-color: var(--line); }
+.bg-raised { background: var(--bg-raised); }
+.bg-bg { background: var(--bg); }
+.divide-hairline > * + * { border-top: 1px solid var(--line); }
