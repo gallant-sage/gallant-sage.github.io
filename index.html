@@ -23,7 +23,7 @@
   </script>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body class="relative min-h-screen selection:text-white">
 
@@ -34,10 +34,10 @@
 
     <!-- Header -->
     <header class="sticky top-0 z-40 backdrop-blur-md border-b border-hairline bg-bg/85">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
 
-        <a href="#" class="flex items-center gap-2.5 group">
-          <svg viewBox="0 0 32 32" class="sierpinski" width="24" height="24" aria-hidden="true">
+        <a href="#" class="flex items-center gap-2 group">
+          <svg viewBox="0 0 32 32" class="sierpinski" width="22" height="22" aria-hidden="true">
             <path d="M16,3 L12.75,9.5 L19.25,9.5 Z"></path>
             <path d="M9.5,16 L12.75,9.5 L16,16 Z"></path>
             <path d="M22.5,16 L19.25,9.5 L16,16 Z"></path>
@@ -57,12 +57,12 @@
           <a href="#contact" class="link-underline hover:text-fg transition-colors">Contact</a>
         </nav>
 
-        <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-2">
           <button id="theme-toggle-btn" aria-label="Toggle day / night theme"
-                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-xs font-mono border border-hairline text-fg-soft hover:border-violet transition-all">
-            <i id="theme-icon-sun" data-lucide="sun" class="w-3.5 h-3.5"></i>
-            <i id="theme-icon-moon" data-lucide="moon" class="w-3.5 h-3.5 hidden"></i>
-            <span id="theme-label" class="hidden sm:inline">Day</span>
+                  class="flex items-center justify-center w-9 h-9 rounded-[3px] text-xs font-mono border border-hairline text-fg-soft hover:border-violet transition-all">
+            <i id="theme-icon-sun" data-lucide="sun" class="w-4 h-4"></i>
+            <i id="theme-icon-moon" data-lucide="moon" class="w-4 h-4 hidden"></i>
+            <span id="theme-label" class="sr-only">Toggle theme</span>
           </button>
 
           <a href="Sibabrata_CV.pdf" target="_blank" rel="noopener noreferrer"
@@ -72,27 +72,30 @@
           </a>
 
           <button id="mobile-nav-btn" aria-label="Open menu" aria-expanded="false"
-                  class="md:hidden flex items-center justify-center w-9 h-9 rounded-[3px] border border-hairline text-fg">
+                  class="md:hidden flex items-center justify-center w-9 h-9 rounded-[3px] border border-hairline text-fg hover:border-violet transition-colors">
             <i id="mobile-nav-icon-open" data-lucide="menu" class="w-4.5 h-4.5"></i>
             <i id="mobile-nav-icon-close" data-lucide="x" class="w-4.5 h-4.5 hidden"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mobile nav sheet -->
-      <div id="mobile-nav" class="md:hidden border-b border-hairline bg-bg/95 backdrop-blur-md">
-        <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex flex-col text-sm divide-hairline">
+      <!-- Mobile nav overlay -->
+      <div id="mobile-nav" class="hidden md:hidden border-b border-hairline bg-bg/95 backdrop-blur-md">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex flex-col text-sm divide-hairline">
           <a href="#building" class="py-2.5 text-fg-soft hover:text-fg transition-colors">Currently Building</a>
           <a href="#projects" class="py-2.5 text-fg-soft hover:text-fg transition-colors">Research</a>
           <a href="#skills" class="py-2.5 text-fg-soft hover:text-fg transition-colors">Skills</a>
           <a href="#experience" class="py-2.5 text-fg-soft hover:text-fg transition-colors">Experience</a>
           <a href="#contact" class="py-2.5 text-fg-soft hover:text-fg transition-colors">Contact</a>
-          <a href="Sibabrata_CV.pdf" target="_blank" class="py-2.5 text-violet font-medium hover:underline">Download résumé →</a>
+          <a href="Sibabrata_CV.pdf" target="_blank" class="py-2.5 text-violet font-medium hover:underline flex items-center justify-between">
+            <span>Download résumé</span>
+            <span>→</span>
+          </a>
         </nav>
       </div>
     </header>
 
-    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 w-full py-14 sm:py-20 space-y-12 sm:space-y-16">
+    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 w-full py-8 sm:py-16 space-y-10 sm:space-y-16">
 
       <!-- Hero -->
       <section class="space-y-7">
@@ -706,8 +709,8 @@
     <span>Email copied to clipboard!</span>
   </div>
 
-  <script src="automata.js"></script>
-  <script src="app.js"></script>
+  <script src="automata.js?v=2"></script>
+  <script src="app.js?v=2"></script>
   <script>lucide.createIcons();</script>
 </body>
 </html>

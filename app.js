@@ -49,11 +49,13 @@ function initMobileNav() {
 
   const close = () => {
     panel.classList.remove('open');
+    panel.classList.add('hidden');
     if (iconOpen) iconOpen.classList.remove('hidden');
     if (iconClose) iconClose.classList.add('hidden');
     btn.setAttribute('aria-expanded', 'false');
   };
   const open = () => {
+    panel.classList.remove('hidden');
     panel.classList.add('open');
     if (iconOpen) iconOpen.classList.add('hidden');
     if (iconClose) iconClose.classList.remove('hidden');
