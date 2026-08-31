@@ -196,12 +196,20 @@ html.dark .toast { background: var(--gold); color: var(--night); }
 
 /* ---------- Mobile nav sheet ---------- */
 #mobile-nav {
-  transform: translateY(-8px);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  background: var(--bg);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.18);
+  transform: translateY(-6px);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.22s ease, opacity 0.22s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 #mobile-nav.open {
+  display: block;
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
